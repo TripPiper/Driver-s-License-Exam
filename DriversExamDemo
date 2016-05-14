@@ -1,0 +1,61 @@
+
+
+import java.util.Scanner;
+
+
+/**
+ *
+ * @author gwendolynsandy
+ */
+public class DriversExamDemo {
+
+    public static void main(String[] args) {
+
+        Scanner keyboard = new Scanner(System.in);
+
+        System.out.println(" Enter the student's answers.");
+        String[] ans1 = new String[20];
+        String input;
+
+        for (int i = 0; i < ans1.length; i++) {
+            do {
+                System.out.println("Grade " + (i + 1));
+                input = keyboard.nextLine();
+
+            } while (!isValidAnswer(input));
+            ans1[i] = input;
+        }
+
+        DriversExam exam = new DriversExam(ans1);
+        System.out.println(" RESULTS ");
+        System.out.println(" Total Correct " + exam.totalCorrect());
+        System.out.println(" Total Incorrect " + exam.totalIncorrect());
+        String passed = exam.passed() ? " YES " : " NO ";
+
+        System.out.println(" Passed " + passed);
+
+        if (exam.totalIncorrect() > 0) {
+            //System.out.println(" The questions missed are :");
+
+            boolean[] missed = exam.questionsMissed();
+
+            for (int i = 0; i < missed.length; i++) {
+
+                if (missed[i] == false) {
+                    System.out.println(" Question " + (i + 1) + " is incorrect. ");
+                }
+            }
+
+        }
+    }
+
+    private static boolean isValidAnswer(String input1) {
+
+        return "A".equalsIgnoreCase(input1)
+                || "B".equalsIgnoreCase(input1)
+                || "C".equalsIgnoreCase(input1)
+                || "D".equalsIgnoreCase(input1);
+    }
+}
+
+
