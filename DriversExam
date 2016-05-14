@@ -1,0 +1,49 @@
+
+
+
+public class DriversExam {
+
+    private static String[] key = {"B", "D", "A", "A", "C", "A", "B", "A",
+        "C", "D", "B", "C", "D", "A", "D", "C", "C", "B", "D", "A"};
+    public boolean[] missed;
+    private int correct;
+    private int incorrect;
+    private String[] answers;
+
+    public DriversExam(String[] ans) {
+        missed = new boolean[ans.length];
+        answers = new String[ans.length];
+        correct = 0;
+        incorrect = 0;
+
+        for (int i = 0; i < ans.length; i++) {
+            answers[i] = ans[i];
+            missed[i] = answers[i].equalsIgnoreCase(key[i]);
+            if (missed[i]== true ) {
+                correct++;
+            } else {
+                incorrect++;
+            }
+        }
+
+    }
+
+    public boolean passed() {
+        return correct > 14;
+    }
+
+    public int totalCorrect() {
+        return correct;
+
+    }
+
+    public int totalIncorrect() {
+        return incorrect;
+    }
+
+    public boolean[] questionsMissed() {
+          
+        return missed;
+    }
+}
+
